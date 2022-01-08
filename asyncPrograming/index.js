@@ -115,5 +115,21 @@ function callApiFetch() {
   function _rejectCountry() {
       alert("something went wrong")
   }
+
+  // const currency = ????
+  const crypto = document.querySelector("#crypto").value;
+  if(!crypto) return;
+  fetch(`https://rest.coinapi.io/v1/exchangerate/${crypto}/${currency}?apikey=9F25A86A-090A-4C66-8E48-F62706B7FC6A`)
+  .then(_resolvecurrency)
+  .then(_resolvecurrecyJson)
+  .catch(_rejectCountry);
+
+  function _resolvecurrency(response){
+    return response.json();
+  }
+
+  function _resolvecurrecyJson(response){
+    console.log(response[0].rate)
+  }
 }
 // coin api : API Key: 0D4CEC5E-51C9-4799-8D05-E04AEF465AA2
